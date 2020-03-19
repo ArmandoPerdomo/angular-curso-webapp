@@ -1,17 +1,1 @@
-<div class="mi-clase d-flex flex-column align-items-center justify-content-center p-4 text-uppercase text-primary">
-    <h1>{{miPersona.nombre}} {{miPersona.apellido}}</h1>
-    <small>{{miPersona.id}}</small>
-    <h1>{{apiUrl}}</h1>
-    
-    <div class="p-5">
-        <input [value]="apiUrl" readonly>
-    </div>
-    <div class="d-flex flex-row">
-        <button mat-raised-button (click)="apiUrl = 'mi nombre'">Botón 1</button>
-        <button mat-raised-button color="primary">Botón Primary</button>
-        <button mat-raised-button color="accent">Botón Accent</button>
-        <button mat-raised-button color="warn">Botón Warn</button>
-        <button mat-raised-button disabled>Botón Disabled</button>
-        <a mat-raised-button routerLink=".">Botón Link</a>
-    </div>    
-</div>
+<router-outlet></router-outlet>

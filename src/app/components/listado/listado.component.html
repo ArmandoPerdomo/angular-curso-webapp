@@ -1,0 +1,26 @@
+<div class="mi-clase d-flex flex-column align-items-center justify-content-center p-4 text-uppercase text-primary">
+    <h1>{{miPersona.nombre}} {{miPersona.apellido}}</h1>
+    <small>{{miPersona.id}}</small>
+    <h1>{{apiUrl}} <mat-icon class="text-primary">check_circle</mat-icon> </h1>
+    
+    <div class="p-5">
+        <mat-form-field>
+            <mat-label>Mi campo</mat-label>
+            <input matInput [value]="apiUrl" [readonly]="marcarComoReadOnly">
+            <mat-icon matSuffix class="text-primary">check_circle</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="d-flex flex-row">
+        <button mat-raised-button (click)="marcarComoReadOnly = !marcarComoReadOnly">
+            Marcar como ReadOnly: {{marcarComoReadOnly}}
+        </button>
+    </div>    
+    <div class="d-flex flex-row mt-2">
+        <!-- Incorrecto <a mat-raised-button href="/form">
+            Redireccionar al Formulario
+        </a>-->
+        <button mat-raised-button (click)="redireccionarAlDetalle()">
+            Redireccionar al Formulario
+        </button>
+    </div>
+</div>
