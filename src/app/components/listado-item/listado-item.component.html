@@ -1,0 +1,13 @@
+<div class="p-3 m-1 border border-primary" appIsActive [esActivo]="miPersona.activo">
+    <h1>{{miPersona.nombre}} {{miPersona.apellido}}</h1>
+    <small>{{miPersona.id}}</small>
+</div>
+
+<div class="d-flex flex-row align-items-center mt-1 justify-content-center">
+    <button mat-raised-button color="primary" (click)="verDetallePathParam(miPersona)">
+        Ver detalle Path Param {{miPersona.nombre}}
+    </button>
+    <button mat-raised-button color="accent" (click)="verDetalleQueryParam(miPersona)">
+        Ver detalle Query Param {{miPersona.nombre}}
+    </button>
+</div>

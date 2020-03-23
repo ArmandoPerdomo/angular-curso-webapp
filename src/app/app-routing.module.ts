@@ -1,3 +1,4 @@
+import { DetalleComponent } from './components/detalle/detalle.component';
 import { ListadoComponent } from './components/listado/listado.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,15 @@ const routes: Routes = [
     component: ListadoComponent
   },
   {
-    path: 'listado/:id/:name',
+    path: 'listado/detalle',
+    component: DetalleComponent
+  },
+  {
+    path: 'listado/:id/:nombre/:apellido',
+    component: DetalleComponent
+  },
+  {
+    path: 'form',
     component: FormularioComponent
   },
   {

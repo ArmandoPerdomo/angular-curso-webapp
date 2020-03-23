@@ -1,8 +1,13 @@
 <div class="mi-clase d-flex flex-column align-items-center justify-content-center p-4 text-uppercase text-primary">
-    <h1>{{miPersona.nombre}} {{miPersona.apellido}}</h1>
-    <small>{{miPersona.id}}</small>
-    <h1>{{apiUrl}} <mat-icon class="text-primary">check_circle</mat-icon> </h1>
     
+    <ng-container *ngFor="let miPersona of personas">
+        <ng-container *ngIf="miPersona.activo">
+            <app-listado-item [persona]="miPersona"></app-listado-item>
+        </ng-container>
+    </ng-container>
+
+    <h1>{{apiUrl}} <mat-icon class="text-primary">check_circle</mat-icon> </h1>
+
     <div class="p-5">
         <mat-form-field>
             <mat-label>Mi campo</mat-label>
