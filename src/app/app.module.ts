@@ -1,3 +1,4 @@
+import { PersonaService } from './core/services/persona.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,24 +14,28 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { CommonModule } from '@angular/common';
 import { IsActiveDirective } from './core/is-active.directive';
 import { ListadoItemComponent } from './components/listado-item/listado-item.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [
+  declarations: [ // Componentes, Directivas, Pipes
     AppComponent,
     FormularioComponent,
     ListadoComponent,
     DetalleComponent,
     IsActiveDirective,
-    ListadoItemComponent
+    ListadoItemComponent,
+    ToolbarComponent
   ],
-  imports: [
+  imports: [ // Módulos
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

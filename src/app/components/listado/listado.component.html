@@ -1,9 +1,7 @@
-<div class="mi-clase d-flex flex-column align-items-center justify-content-center p-4 text-uppercase text-primary">
+<div class="mi-clase d-flex flex-column align-items-center justify-content-center p-4">
     
     <ng-container *ngFor="let miPersona of personas">
-        <ng-container *ngIf="miPersona.activo">
-            <app-listado-item [persona]="miPersona"></app-listado-item>
-        </ng-container>
+        <app-listado-item [persona]="miPersona"></app-listado-item>
     </ng-container>
 
     <h1>{{apiUrl}} <mat-icon class="text-primary">check_circle</mat-icon> </h1>

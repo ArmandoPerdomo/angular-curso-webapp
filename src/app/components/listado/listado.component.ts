@@ -1,3 +1,4 @@
+import { PersonaService } from './../../core/services/persona.service';
 import { Component, OnInit } from '@angular/core';
 import { environment as env } from './../../../environments/environment';
 import { Router } from '@angular/router';
@@ -11,26 +12,7 @@ import {Persona} from '../../core/interfaces/persona';
 export class ListadoComponent implements OnInit {
 
   titulo: any;
-  personas: Persona[] = [
-    {
-      id: 1,
-      nombre: 'Armando',
-      apellido: 'Perdomo',
-      activo: true
-    },
-    {
-      id: 2,
-      nombre: 'Ana',
-      apellido: 'Gallardo',
-      activo: true
-    },
-    {
-      id:3,
-      nombre: 'Carmen',
-      apellido: 'San Miguel',
-      activo: false
-    }
-  ];
+  personas: Persona[];
 
   apiUrl = env.api_url;
 
@@ -39,7 +21,8 @@ export class ListadoComponent implements OnInit {
   miArreglo = Array.from({length: 3}, (_, indx) => indx + 1); // [1,2,3]
 
   constructor(
-    private router: Router
+    private router: Router,
+    private personaService: PersonaService
   ){
 
     console.log(this.titulo);
@@ -52,6 +35,13 @@ export class ListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.personaService.getAll().subscribe(
+      (data) => {
+        this.personas = data;
+      }, (error) => {
+        console.error(error);
+      }
+    )
   }
 
   redireccionarAlDetalle(){

@@ -33,4 +33,9 @@ export class ListadoItemComponent implements OnInit {
     });
   }
 
+  getClase(){
+    // some code
+    return this.miPersona.activo ? 'text-uppercase text-center': 'text-lowercase';
+  }
+
 }

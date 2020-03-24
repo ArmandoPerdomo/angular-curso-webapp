@@ -34,7 +34,7 @@ export class DetalleComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe(
       (queryParams) => {
-        console.log('Desde el subcriber',queryParams);
+        console.log('Desde el subcriber Query params',queryParams);
         this.nombre = queryParams['nombre'];
         this.apellido = queryParams['apellido'];
         this.id = queryParams['id'];
