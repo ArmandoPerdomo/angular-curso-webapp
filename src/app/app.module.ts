@@ -16,6 +16,9 @@ import { IsActiveDirective } from './core/is-active.directive';
 import { ListadoItemComponent } from './components/listado-item/listado-item.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck-norris-jokes.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [ // Componentes, Directivas, Pipes
@@ -25,7 +28,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     DetalleComponent,
     IsActiveDirective,
     ListadoItemComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ChuckNorrisJokesComponent
   ],
   imports: [ // Módulos
     CommonModule,
@@ -35,7 +39,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

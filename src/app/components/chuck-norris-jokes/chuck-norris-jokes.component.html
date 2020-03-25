@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row p-3">
+        <div class="col-4">
+            <button class="w-100 my-2" [disabled]="loadingJoke" mat-raised-button color="accent" (click)="getRandomJoke()">
+                Actualizar Chiste
+                <mat-spinner diameter="15" *ngIf="loadingJoke" class="d-inline"></mat-spinner>
+            </button>
+
+            <ul class="list-group" *ngIf="!loadingJoke">
+                <li class="list-group-item cursor-pointer menu" *ngFor="let category of categories"
+                    (click)="setActualCategory(category)" [ngClass]="actualCategory === category ? 'active-item': ''">
+                    {{category | titlecase}}
+                    <span *ngIf="actualCategory === category">(Activo)</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-8">
+            <div class="media" *ngIf="actualJoke">
+                <img [src]="actualJoke.icon_url" class="mr-3" alt="joke">
+                <!--<img [src]="actualJoke?.icon_url" class="mr-3" alt="joke"> Si actualJoke viene indefinido podemos colocar que es ?-->
+                <div class="media-body">
+                  <h5 class="mt-0">Actual Joke</h5>
+                  <p>{{actualJoke.value}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

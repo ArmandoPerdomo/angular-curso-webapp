@@ -1,3 +1,4 @@
+import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck-norris-jokes.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { ListadoComponent } from './components/listado/listado.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormularioComponent
+  },
+  {
+    path: 'chuck-norris-jokes-api',
+    component: ChuckNorrisJokesComponent
   },
   {
     path: '**',

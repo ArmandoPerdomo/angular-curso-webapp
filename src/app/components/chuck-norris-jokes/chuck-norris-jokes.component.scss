@@ -1,0 +1,15 @@
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.menu{
+    color: blue;
+
+    &:hover{
+        border: 1px solid blue;
+    }
+
+    &.active-item{
+        border: 1px solid blue;
+    }
+}

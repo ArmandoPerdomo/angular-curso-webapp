@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'www.miapi.com one way'
+  api_url: 'www.miapi.com one way',
+  api_chuck_norris: 'https://api.chucknorris.io/jokes/'
 };
 
 /*
