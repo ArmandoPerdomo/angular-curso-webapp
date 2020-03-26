@@ -1,4 +1,5 @@
-import { ChuckNorrisJoke } from './../interfaces/chuck-norris-joke';
+import { debounceTime } from 'rxjs/operators';
+import { ChuckNorrisJoke, JokesQueryResult } from './../interfaces/chuck-norris-joke';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -28,5 +29,11 @@ export class ChuckNorrisApiService {
 
   getCategories(){
     return this.http.get<string[]>(`${environment.api_chuck_norris}categories`);
+  }
+
+  getJokesByQuery(query: string){
+    const params = new HttpParams()
+      .set('query', query)
+    return this.http.get<JokesQueryResult>(`${environment.api_chuck_norris}search`, {params});
   }
 }

@@ -7,3 +7,8 @@ export interface ChuckNorrisJoke {
     url:        string;
     value:      string;
 }
+
+export interface JokesQueryResult {
+    total:  number;
+    result: ChuckNorrisJoke[];
+}

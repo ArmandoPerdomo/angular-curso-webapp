@@ -1,28 +1,43 @@
-import { ChuckNorrisJoke } from './../../core/interfaces/chuck-norris-joke';
+import { FormatDatePipe } from './../../core/pipes/format-date.pipe';
+import { ChuckNorrisJoke, JokesQueryResult } from './../../core/interfaces/chuck-norris-joke';
 import { ChuckNorrisApiService } from './../../core/services/chuck-norris-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, AfterViewInit, ElementRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { timeout, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-chuck-norris-jokes',
   templateUrl: './chuck-norris-jokes.component.html',
   styleUrls: ['./chuck-norris-jokes.component.scss']
 })
-export class ChuckNorrisJokesComponent implements OnInit {
+export class ChuckNorrisJokesComponent implements OnInit, AfterViewInit {
 
   actualJoke: ChuckNorrisJoke;
   categories: string[];
 
   actualCategory: string;
   loadingJoke: boolean;
+  loadingFilteredJokes: boolean;
+
+  resulSetQuery: JokesQueryResult;
+
+  @ViewChild('filterInput') filterInput: ElementRef;
 
   constructor(
-    private chuckNorrisService: ChuckNorrisApiService
+    private chuckNorrisService: ChuckNorrisApiService,
+    private formatDatePipe: FormatDatePipe
   ) { }
 
   ngOnInit(): void {
     this.getCategories();
     this.getRandomJoke();
+    //this.queryJokes("8000");
+  }
+
+  ngAfterViewInit(){
+    console.log(this.filterInput);
+    this.handleSearchField();
   }
 
   getRandomJoke(){
@@ -31,6 +46,7 @@ export class ChuckNorrisJokesComponent implements OnInit {
       (joke) => {
         console.log('Respuesta correcta: Joke', joke);
         this.actualJoke = joke;
+        console.log('llamando el pipe desde mi controlador', this.formatDatePipe.transform(joke.updated_at, 'LT'))
         this.loadingJoke = false;
       }, (error) => {
         console.error(error);
@@ -52,6 +68,41 @@ export class ChuckNorrisJokesComponent implements OnInit {
     )
   }
 
+  /**
+   * https://medium.com/aviabird/rxjs-reducing-number-of-api-calls-to-your-server-using-debouncetime-d71c209a4613
+   * Debounce Time ¿Como Funciona?
+   */
+  handleSearchField(){
+    const el = this.filterInput.nativeElement;
+    const obs = fromEvent(el, 'keydown');
+    obs.pipe(debounceTime(1000)).subscribe(
+      (event: any) => {
+        const value = event.target.value || '';
+        console.log('Valor escrito en el input ->', event.target.value);
+        if(value.length < 3){
+          alert('Debe de escribir al menos 3 caracteres');
+          return;
+        }
+        this.queryJokes(value);
+      }
+    )
+  }
+
+  queryJokes(query: string){
+    this.loadingFilteredJokes = true;
+    this.chuckNorrisService.getJokesByQuery(query).subscribe(
+      (data) => {
+        console.log('Llegó la data filtrada', data);
+        this.resulSetQuery = data;
+        this.loadingFilteredJokes = false;
+      }, (error) => {
+        console.error(error);
+        alert("Error al llamar al api: Error categories");
+        this.loadingFilteredJokes = false;
+      }
+    )
+  }
+
   setActualCategory(category: string){
     if(category !== this.actualCategory){
       this.actualCategory = category;
@@ -62,5 +113,4 @@ export class ChuckNorrisJokesComponent implements OnInit {
       this.getRandomJoke();
     }
   }
-
 }

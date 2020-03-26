@@ -19,6 +19,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck-norris-jokes.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormatDatePipe } from './core/pipes/format-date.pipe';
 
 @NgModule({
   declarations: [ // Componentes, Directivas, Pipes
@@ -29,7 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     IsActiveDirective,
     ListadoItemComponent,
     ToolbarComponent,
-    ChuckNorrisJokesComponent
+    ChuckNorrisJokesComponent,
+    FormatDatePipe
   ],
   imports: [ // Módulos
     CommonModule,
@@ -43,7 +45,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HttpClientModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [FormatDatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

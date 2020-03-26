@@ -21,6 +21,36 @@
                 <div class="media-body">
                   <h5 class="mt-0">Actual Joke</h5>
                   <p>{{actualJoke.value}}</p>
+                  <small>Fecha de Creación: <b>{{ (actualJoke.created_at | date: 'fullDate') | uppercase}}</b></small>
+                  <small>Fecha de Modificación: <b>{{actualJoke.updated_at | formatDate: 'LTS' | uppercase}}</b></small>
+                  <!--<p>{{3000 | currency: 'EUR'}}</p>
+                  <p>{{3000}}</p>-->
+                </div>
+            </div>
+            <div class="mt-2 border border-primary rounded p-3">
+                <mat-form-field class="w-100">
+                    <mat-label>Filtrar chistes por:</mat-label>
+                    <input matInput #filterInput>
+                    <mat-icon matSuffix class="text-primary">find</mat-icon>
+                    <mat-spinner matSuffix diameter="15" *ngIf="loadingFilteredJokes"></mat-spinner>
+                </mat-form-field>
+
+                <div class="mt-2 p-2" *ngIf="resulSetQuery">
+                    <h2>total jokes: <b>{{resulSetQuery.total}}</b></h2>
+                    <ng-container *ngFor="let jokes of resulSetQuery.result; let indx = index">
+                        <div class="media border border-warning my-1">
+                            <img [src]="jokes.icon_url" class="mr-3" alt="joke">
+                            <!--<img [src]="jokes?.icon_url" class="mr-3" alt="joke"> Si jokes viene indefinido podemos colocar que es ?-->
+                            <div class="media-body">
+                              <h2 class="mt-0">Joke {{indx + 1}}</h2>
+                              <p>{{jokes.value}}</p>
+                              <small>Fecha de Creación: <b>{{ (jokes.created_at | date: 'fullDate') | uppercase}}</b></small>
+                              <small>Fecha de Modificación: <b>{{jokes.updated_at | formatDate: 'LTS' | uppercase}}</b></small>
+                              <!--<p>{{3000 | currency: 'EUR'}}</p>
+                              <p>{{3000}}</p>-->
+                            </div>
+                        </div>
+                    </ng-container>
                 </div>
             </div>
         </div>
