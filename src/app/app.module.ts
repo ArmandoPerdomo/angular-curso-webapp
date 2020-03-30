@@ -20,6 +20,7 @@ import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormatDatePipe } from './core/pipes/format-date.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ // Componentes, Directivas, Pipes
@@ -43,7 +44,9 @@ import { FormatDatePipe } from './core/pipes/format-date.pipe';
     MatInputModule,
     MatToolbarModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [FormatDatePipe],
   bootstrap: [AppComponent]

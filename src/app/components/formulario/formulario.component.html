@@ -1,4 +1,41 @@
-<p>formulario works! 123</p>
-<a mat-raised-button routerLink="/listado">
-    Redireccionar al Listado
-</a>
+<div class="container">
+    <div class="row">
+        <div class="col mx-auto p-4">
+            <h1>Mi Primer Formulario (Formulario es {{form.valid ? 'Válido': 'Invalido'}})</h1>
+            <form [formGroup]="form">
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre">
+                    <mat-error>
+                        <span *ngIf="form.get('nombre').hasError('required')">
+                            Este campo es requerido
+                        </span>
+                        <span *ngIf="form.get('nombre').hasError('minlength')">
+                            El mínimo de caracteres es de 2
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="apellido">
+                    <mat-error>
+                        <span *ngIf="form.get('apellido').hasError('required')">
+                            Este campo es requerido
+                        </span>
+                        <span *ngIf="form.get('apellido').hasError('minlength')">
+                            El mínimo de caracteres es de 5
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="save()">
+                    Guardar
+                </button>
+                <button mat-raised-button color="accent" (click)="printEstadoForm()">
+                    Print Estado Campos
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
