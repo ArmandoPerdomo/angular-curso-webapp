@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild, ViewChildren, AfterViewInit, ElementRef }
 import { HttpErrorResponse } from '@angular/common/http';
 import { timeout, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-chuck-norris-jokes',
@@ -22,6 +23,10 @@ export class ChuckNorrisJokesComponent implements OnInit, AfterViewInit {
 
   resulSetQuery: JokesQueryResult;
 
+  page_size: number;
+  page_number: number;
+  pageSizeOptions: number[];
+
   @ViewChild('filterInput') filterInput: ElementRef;
 
   constructor(
@@ -33,6 +38,9 @@ export class ChuckNorrisJokesComponent implements OnInit, AfterViewInit {
     this.getCategories();
     this.getRandomJoke();
     //this.queryJokes("8000");
+    this.page_size = 3;
+    this.page_number = 1;
+    this.pageSizeOptions = [3,5,10,20];
   }
 
   ngAfterViewInit(){
@@ -113,4 +121,10 @@ export class ChuckNorrisJokesComponent implements OnInit, AfterViewInit {
       this.getRandomJoke();
     }
   }
+
+  handlePage(e: PageEvent) {
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex+1;
+  }
+
 }

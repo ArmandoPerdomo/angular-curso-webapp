@@ -1,3 +1,4 @@
+//import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginator-es';
 import { PersonaService } from './core/services/persona.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ListadoComponent } from './components/listado/listado.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { IsActiveDirective } from './core/is-active.directive';
 import { ListadoItemComponent } from './components/listado-item/listado-item.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -20,6 +21,10 @@ import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormatDatePipe } from './core/pipes/format-date.pipe';
+import { PaginatePipe } from './core/pipes/paginate.pipe';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
+import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginator-es';
+
 
 @NgModule({
   declarations: [ // Componentes, Directivas, Pipes
@@ -31,7 +36,8 @@ import { FormatDatePipe } from './core/pipes/format-date.pipe';
     ListadoItemComponent,
     ToolbarComponent,
     ChuckNorrisJokesComponent,
-    FormatDatePipe
+    FormatDatePipe,
+    PaginatePipe, 
   ],
   imports: [ // Módulos
     CommonModule,
@@ -43,9 +49,16 @@ import { FormatDatePipe } from './core/pipes/format-date.pipe';
     MatInputModule,
     MatToolbarModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
-  providers: [FormatDatePipe],
+  providers: [
+    FormatDatePipe,
+    { 
+      provide: MatPaginatorIntl, 
+      useClass: CustomMatPaginatorIntl
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
