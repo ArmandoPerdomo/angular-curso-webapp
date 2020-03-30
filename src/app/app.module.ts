@@ -21,6 +21,7 @@ import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormatDatePipe } from './core/pipes/format-date.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatePipe } from './core/pipes/paginate.pipe';
 import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginator-es';
@@ -50,7 +51,9 @@ import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginato
     MatToolbarModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     FormatDatePipe,

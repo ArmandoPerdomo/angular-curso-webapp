@@ -82,7 +82,7 @@ export class ChuckNorrisJokesComponent implements OnInit, AfterViewInit {
    */
   handleSearchField(){
     const el = this.filterInput.nativeElement;
-    const obs = fromEvent(el, 'keydown');
+    const obs = fromEvent(el, 'keydown'); // rxjs (keydown) (keypress) (enter) (click)
     obs.pipe(debounceTime(1000)).subscribe(
       (event: any) => {
         const value = event.target.value || '';
