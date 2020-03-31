@@ -44,11 +44,13 @@
             </form>
         </div>
         <div class="col-4 p-2 d-flex flex-column">
-            <h2>Sub Listado de Personas</h2>
-            <div class="w-100 border border-primary rounded p-1 my-1" *ngFor="let persona of personaService.getAll() | async">
-                <p>Nombre y Apellido: <b>{{persona.nombre}} {{persona.apellido}}</b></p>
-                <p>Rol: <b>{{persona.rol}}</b></p>
-                <p>Estado: <b>{{persona.activo ? 'Activo': 'Inactivo'}}</b></p>
+            <div class="mat-elevation-z2 rounded p-1" style="background-color: #f6f6f6;">
+                <h2>Sub Listado de Personas</h2>
+                <div class="w-100 border border-primary rounded p-1 my-1" *ngFor="let persona of personaService.getAll() | async">
+                    <p>Nombre y Apellido: <b>{{persona.nombre}} {{persona.apellido}}</b></p>
+                    <p>Rol: <b>{{persona.rol}}</b></p>
+                    <p>Estado: <b>{{persona.activo ? 'Activo': 'Inactivo'}}</b></p>
+                </div>
             </div>
         </div>
     </div>
