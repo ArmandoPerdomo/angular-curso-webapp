@@ -1,3 +1,4 @@
+import { PersonaService } from './../../core/services/persona.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -11,7 +12,8 @@ export class FormularioComponent implements OnInit, OnDestroy {
   form: FormGroup; //undefined
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public personaService: PersonaService
   ) { }
   
 
