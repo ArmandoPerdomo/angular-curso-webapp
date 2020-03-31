@@ -1,3 +1,4 @@
+import { Persona } from './../../core/interfaces/persona';
 import { PersonaService } from './../../core/services/persona.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -27,8 +28,10 @@ export class FormularioComponent implements OnInit, OnDestroy {
     });*/
 
     this.form = this.fb.group({
-      nombre: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      apellido: ['', [Validators.required, Validators.minLength(5)]]
+      nombre: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      apellido: ['', [Validators.required, Validators.minLength(3)]],
+      activo: [true],
+      rol: ['', Validators.required]
     });
 
     //nuevo control
@@ -45,8 +48,17 @@ export class FormularioComponent implements OnInit, OnDestroy {
       return;
     }*/
 
-    const values = this.form.value; // {nombre: "armando", apellido: "perdomo"}
+    const values = this.form.value; // {nombre: "armando", apellido: "perdomo", rol: 'A', activo: true}
     console.log(values);
+    /*const toSave: Persona = { Esto es en caso de que las props del form sean distintas
+      activo: values['activo'],
+      rol: values['rol'],
+      nombre: values['nombre'],
+      apellido: values['apellido']
+    }*/
+    this.personaService.save(values);
+    this.form.reset();
+    this.form.get('activo').setValue(true);
   }
 
   printEstadoForm(){

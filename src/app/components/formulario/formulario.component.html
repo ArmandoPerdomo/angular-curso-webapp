@@ -12,7 +12,7 @@
                                 Este campo es requerido
                             </span>
                             <span *ngIf="form.get('nombre').hasError('minlength')">
-                                El mínimo de caracteres es de 2
+                                El mínimo de caracteres es de 3
                             </span>
                         </mat-error>
                     </mat-form-field>
@@ -27,9 +27,33 @@
                                 Este campo es requerido
                             </span>
                             <span *ngIf="form.get('apellido').hasError('minlength')">
-                                El mínimo de caracteres es de 5
+                                El mínimo de caracteres es de 3
                             </span>
                         </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 p-1 text-center">
+                    <mat-checkbox formControlName="activo">Estado</mat-checkbox>
+                </div>
+
+                <div class="col-6 p-1">
+                    <mat-form-field class="w-100">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="rol">
+                            <mat-option disabled>
+                                Seleccione Rol
+                            </mat-option>
+                            <mat-option value="A">
+                                Rol A
+                            </mat-option>
+                            <mat-option value="B">
+                                Rol B
+                            </mat-option>
+                            <mat-option value="C">
+                                Rol C
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
 
@@ -46,7 +70,11 @@
         <div class="col-4 p-2 d-flex flex-column">
             <div class="mat-elevation-z2 rounded p-1" style="background-color: #f6f6f6;">
                 <h2>Sub Listado de Personas</h2>
-                <div class="w-100 border border-primary rounded p-1 my-1" *ngFor="let persona of personaService.getAll() | async">
+                <button class="w-100 my-1" mat-raised-button (click)="personaService.deleteAll()">
+                    Eliminar Todos
+                </button>
+                <div class="w-100 border border-primary rounded p-1 my-1" 
+                    *ngFor="let persona of personaService.getAll() | async">
                     <p>Nombre y Apellido: <b>{{persona.nombre}} {{persona.apellido}}</b></p>
                     <p>Rol: <b>{{persona.rol}}</b></p>
                     <p>Estado: <b>{{persona.activo ? 'Activo': 'Inactivo'}}</b></p>

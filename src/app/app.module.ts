@@ -1,3 +1,4 @@
+import { ChildModule } from './modules/child/child.module';
 //import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginator-es';
 import { PersonaService } from './core/services/persona.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatePipe } from './core/pipes/paginate.pipe';
 import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginator-es';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -53,7 +56,9 @@ import { CustomMatPaginatorIntl } from './components/chuck-norris-jokes/paginato
     MatProgressSpinnerModule,
     MatPaginatorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     FormatDatePipe,

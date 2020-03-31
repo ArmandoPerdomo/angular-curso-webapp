@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   constructor(
-    private personaService: PersonaService
+    public personaService: PersonaService
   ) { }
 
   ngOnInit(): void {

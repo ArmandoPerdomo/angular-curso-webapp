@@ -1,1 +1,11 @@
-<mat-toolbar>My App</mat-toolbar>
+<mat-toolbar>
+    <h3 class="cursor-pointer" routerLink="/listado">Mi Primera Angular App</h3>
+    <div style="flex: 1 0 auto"></div>
+    <button mat-button color="accent" routerLink="/child/component">
+        Ir a Child
+    </button>
+    <button mat-button color="accent" routerLink="/chuck-norris-jokes-api">
+        Ir a Chistes
+    </button>
+    <h3>Personas: {{(personaService.getAll() | async).length}}</h3>
+</mat-toolbar>

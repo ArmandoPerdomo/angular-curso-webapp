@@ -38,11 +38,23 @@ export class PersonaService {
     }
   ];
 
-  personaSource: BehaviorSubject<Persona[]> = new BehaviorSubject(this.personas);
+  //personaSource: BehaviorSubject<Persona[]> = new BehaviorSubject(this.personas); 
+  personaSource: BehaviorSubject<Persona[]> = new BehaviorSubject([]);
 
   constructor() { }
 
   getAll(){
     return this.personaSource.asObservable();
+  }
+
+  save(persona: Persona){
+    const values = this.personaSource.getValue();
+    persona.id = values.length + 1;
+    values.push(persona);
+    this.personaSource.next(values);
+  }
+
+  deleteAll(){
+    this.personaSource.next([]);
   }
 }

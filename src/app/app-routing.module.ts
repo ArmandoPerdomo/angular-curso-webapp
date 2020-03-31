@@ -1,3 +1,4 @@
+import { ChildComponent } from './modules/child/components/child/child.component';
 import { ChuckNorrisJokesComponent } from './components/chuck-norris-jokes/chuck-norris-jokes.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { ListadoComponent } from './components/listado/listado.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'chuck-norris-jokes-api',
     component: ChuckNorrisJokesComponent
+  },
+  {
+    path: 'child',
+    loadChildren: () => import('../app/modules/child/child.module').then(m => m.ChildModule)
   },
   {
     path: '**',

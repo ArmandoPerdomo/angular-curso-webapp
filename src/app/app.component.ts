@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
+  constructor(private router: Router){
+    this.router.events.subscribe(
+      (event) => {
+        if(event instanceof NavigationStart){
+          console.log('Comenzó a navegar');
+        }
+        if(event instanceof NavigationEnd){
+          
+        }
+      }
+    )
+  }
 }
